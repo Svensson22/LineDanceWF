@@ -1,4 +1,5 @@
 ﻿using LineDanceWF.Data;
+using System.Security.Cryptography;
 
 namespace LineDanceWF.Services
 {
@@ -56,6 +57,51 @@ namespace LineDanceWF.Services
                 return fbd.SelectedPath;
             }
         }
-
+        public void AddSongsFromFolder()
+        {
+            MessageBox.Show("You need to chose a default folder to import files from.");
+            AddSongsFromFolder(FolderPicker());
+        }
+        public void AddSongsFromFolder(string path)
+        {
+            foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
+            {
+                try
+                {
+                    string ext = Path.GetExtension(file);
+                    //Searching for files with the extension we want to be able to play
+                    if (ext == ".mp3" || ext == ".m4a" || ext == ".wav" || ext == ".ogg")
+                    {
+                        Song song = new Song()
+                        {
+                            Name = Path.GetFileName(file),
+                            FilePath = Path.GetFullPath(file),
+                            FileHash = GetHash(Path.GetFullPath(file)),
+                        };
+                    }
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    MessageBox.Show(e.Message);
+                    continue;
+                }
+                catch (System.IO.DirectoryNotFoundException e)
+                {
+                    MessageBox.Show(e.Message);
+                    continue;
+                }
+            }
+        }
+        //Think this should work for getting the hash
+        private string GetHash(string filepath)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(filepath))
+                {
+                    return md5.ComputeHash(stream).ToString();
+                }
+            }
+        }
     }
 }
