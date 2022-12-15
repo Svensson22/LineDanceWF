@@ -18,7 +18,7 @@ namespace LineDanceWF.Services
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       => optionsBuilder.UseSqlite("Data Source=linedancing.db");
 
-        public DbSet<Dances>? Dances { get; set; }
-        public DbSet<Songs>? Songs { get; set; }
+        public DbSet<Dance>? Dances { get; set; }
+        public DbSet<Song>? Songs { get; set; }
     }
 }
