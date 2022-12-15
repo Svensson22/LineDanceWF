@@ -20,5 +20,6 @@ namespace LineDanceWF.Services
 
         public DbSet<Dance>? Dances { get; set; }
         public DbSet<Song>? Songs { get; set; }
+        public DbSet<Playlist>? Playlists { get; set; }
     }
 }
