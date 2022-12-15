@@ -47,7 +47,15 @@ namespace LineDanceWF.Services
             _db.Dances.Update(dance);
             _db.SaveChanges();
         }
-        
+
+        public string FolderPicker()
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                return fbd.SelectedPath;
+            }
+        }
 
     }
 }
