@@ -78,6 +78,7 @@ namespace LineDanceWF.Services
                             FilePath = Path.GetFullPath(file),
                             FileHash = GetHash(Path.GetFullPath(file)),
                         };
+                        AddSong(song);
                     }
                 }
                 catch (UnauthorizedAccessException e)
