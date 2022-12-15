@@ -99,7 +99,7 @@ namespace LineDanceWF.Services
             {
                 using (var stream = File.OpenRead(filepath))
                 {
-                    return md5.ComputeHash(stream).ToString();
+                    return BitConverter.ToString(md5.ComputeHash(stream));
                 }
             }
         }
