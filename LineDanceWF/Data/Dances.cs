@@ -9,10 +9,9 @@ namespace LineDanceWF.Data
 {
     internal class Dances
     {
-        [Required]
-        int DanceId { get; set; }
-        string? Name { get; set; }
-        Songs? SourceSong { get; set; }
-        List<Songs>? Alternatives { get; set; }
+        public int DanceId { get; set; }
+        public string? Name { get; set; } = string.Empty;
+        public Songs? SourceSong { get; set; }
+        public virtual List<Songs>? Alternatives { get; set; }
     }
 }
