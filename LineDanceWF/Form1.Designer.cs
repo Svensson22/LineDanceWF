@@ -1,4 +1,6 @@
-﻿namespace LineDanceWF
+﻿using LineDanceWF.Services;
+
+namespace LineDanceWF
 {
     partial class Form1
     {
@@ -20,6 +22,16 @@
             base.Dispose(disposing);
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            LDContext db = new LDContext();
+            LDRepo lDRepo = new LDRepo(db);
+            //Delete later just testing to see were it stops
+            //pick a folder were you have music to check if it adds
+            //Atm issues with conection to database
+            lDRepo.AddSongsFromFolder();
+            base.OnLoad(e);
+        }
         #region Windows Form Designer generated code
 
         /// <summary>
