@@ -25,6 +25,7 @@ namespace LineDanceWF
         protected override void OnLoad(EventArgs e)
         {
             LDContext db = new LDContext();
+            db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
             LDRepo lDRepo = new LDRepo(db);
             //Delete later just testing to see were it stops
