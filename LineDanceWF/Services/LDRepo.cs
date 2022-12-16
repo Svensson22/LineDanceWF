@@ -64,6 +64,9 @@ namespace LineDanceWF.Services
         }
         public void AddSongsFromFolder(string path)
         {
+            try
+            {
+
             foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
             {
                 try
@@ -93,6 +96,18 @@ namespace LineDanceWF.Services
                 }
             }
         }
+            catch (UnauthorizedAccessException e)
+            {
+                MessageBox.Show(e.Message + "\nPlease pick a folder that you have acess to");
+            }
+            catch (System.IO.DirectoryNotFoundException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
+
         //Think this should work for getting the hash
         private string GetHash(string filepath)
         {
