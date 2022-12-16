@@ -34,7 +34,7 @@ namespace LineDanceWF.Services
                 .UsingEntity(j => j.ToTable("DanceSongs"));
 
             modelBuilder.Entity<Dance>()
-                .HasOne(d => d.OrigninalSong);
+                .HasOne(d => d.OriginalSong);
 
             modelBuilder.Entity<Playlist>()
                 .HasMany(p => p.Dances)

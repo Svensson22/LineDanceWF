@@ -8,8 +8,8 @@ namespace LineDanceWF.Data
     {
         public int DanceId { get; set; }
         public string? Name { get; set; } = string.Empty;
-        public int? OrigninalSongID { get; set; }
-        public Song? OrigninalSong { get; set; }
+        public int? OriginalSongID { get; set; }
+        public Song? OriginalSong { get; set; }
         public virtual ObservableCollectionListSource<Song>? Alternatives { get; set; }
         public virtual ObservableCollectionListSource<Playlist>? Playlists { get; set; }
     }
