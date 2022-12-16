@@ -14,6 +14,10 @@ namespace LineDanceWF.Services
         {
 
         }
+        public LDContext()
+        {
+
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       => optionsBuilder.UseSqlite("Data Source=linedancing.db");
