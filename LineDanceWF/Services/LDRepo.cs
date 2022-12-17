@@ -23,6 +23,15 @@ namespace LineDanceWF.Services
             _db.Songs.Add(song);
             _db.SaveChanges();
         }
+        public void AddSongs(List<Song> songs)
+        {
+            foreach(Song song in songs)
+            {
+                _db.Songs.Add(song);
+            }
+            _db.SaveChanges();
+        }
+
         public void DeleteSong(Song song)
         {
             _db.Songs.Remove(song);
@@ -66,6 +75,9 @@ namespace LineDanceWF.Services
         {
             try
             {
+                List<Song> songs = new List<Song>();
+                int AmountOfNewSongs = 0;
+                int AmountOfExistingSongs = 0;
 
             foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
             {
@@ -81,8 +93,16 @@ namespace LineDanceWF.Services
                             FilePath = Path.GetFullPath(file),
                             FileHash = GetHash(Path.GetFullPath(file)),
                         };
-                        AddSong(song);
-                    }
+                        if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() ==0)
+                            {
+                                songs.Add(song);
+                                AmountOfNewSongs++;
+                            }
+                            else
+                            {
+                                AmountOfExistingSongs++;
+                            }
+                        }
                 }
                 catch (UnauthorizedAccessException e)
                 {
@@ -95,7 +115,10 @@ namespace LineDanceWF.Services
                     continue;
                 }
             }
-        }
+                AddSongs(songs);
+                MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped.");
+
+            }
             catch (UnauthorizedAccessException e)
             {
                 MessageBox.Show(e.Message + "\nPlease pick a folder that you have acess to");
