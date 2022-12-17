@@ -20,9 +20,18 @@ namespace LineDanceWF.Services
 
         public void AddSong(Song song)
         {
-            _db.Songs.Add(song);
-            _db.SaveChanges();
+            if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() != 0)
+            {
+                _db.Songs.Add(song);
+                _db.SaveChanges();
+            }
+            else
+            {
+                SongExist(song);
+            }
         }
+        //Need to have exist checks when making the list
+        //before the call of this one
         public void AddSongs(List<Song> songs)
         {
             foreach(Song song in songs)
@@ -34,28 +43,104 @@ namespace LineDanceWF.Services
 
         public void DeleteSong(Song song)
         {
-            _db.Songs.Remove(song);
-            _db.SaveChanges();
+            if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() != 0)
+            {
+                _db.Songs.Remove(song);
+                _db.SaveChanges();
+            }
+            else
+            {
+                SongNotExist(song);
+            }
         }
         public void EditSong(Song song)
         {
-            _db.Songs.Update(song);
-            _db.SaveChanges();
+            if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() != 0)
+            {
+                _db.Songs.Update(song);
+                _db.SaveChanges();
+            }
+            else
+            {
+                SongNotExist(song);
+            }
         }
+
+        
         public void AddDance(Dance dance)
         {
-            _db.Dances.Add(dance);
-            _db.SaveChanges();
+            try
+            {
+                if (_db.Dances.Where(x => x.Name.Equals(dance.Name)).Count() == 0)
+                {
+                    _db.Dances.Add(dance);
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    DanceExist(dance);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
+        public void DanceExist(Dance dance)
+        {
+            MessageBox.Show($"{dance.Name} already exist, please enter another one");
+        }
+        public void DanceNotExist(Dance dance)
+        {
+            MessageBox.Show($"{dance.Name} Don't exist, please enter another one");
+        }
+        public void SongExist(Song song)
+        {
+            MessageBox.Show($"{song.Name} already exist, please enter another one");
+        }
+        public void SongNotExist(Song song)
+        {
+            MessageBox.Show($"{song.Name} Don't exist, please enter another one");
+        }
+
+
         public void DeleteDance(Dance dance)
         {
-            _db.Dances.Remove(dance);
-            _db.SaveChanges();
+            try
+            {
+                if (_db.Dances.Where(x => x.Name.Equals(dance.Name)).Count() != 0)
+                {
+                    _db.Dances.Remove(dance);
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    DanceNotExist(dance);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
         public void EditDance(Dance dance)
         {
-            _db.Dances.Update(dance);
-            _db.SaveChanges();
+            try
+            {
+                if (_db.Dances.Where(x => x.Name.Equals(dance.Name)).Count() != 0)
+                {
+                    _db.Dances.Update(dance);
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    DanceNotExist(dance);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public string FolderPicker()
