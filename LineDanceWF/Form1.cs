@@ -6,17 +6,15 @@ namespace LineDanceWF
 {
     public partial class Form1 : Form
     {
+        private LDRepo _repo;
         public Form1()
         {
+            _repo = new LDRepo(new LDContext());
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LDContext dbtest = new LDContext();
-            //db.Database.EnsureDeleted();
-            dbtest.Database.EnsureCreated();
-            LDRepo lDRepo = new LDRepo(dbtest);
 
         }
 
@@ -24,6 +22,7 @@ namespace LineDanceWF
         {
             List<Song> songs = new List<Song>();
             string searchText = DanceSearch.Text;
+            
            
         }
     }
