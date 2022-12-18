@@ -65,7 +65,22 @@ namespace LineDanceWF.Services
                 SongNotExist(song);
             }
         }
+        public List<Song> FindTop20songs(string searchStr)
+        {
+            try
+            {
+                List<Song> list = new List<Song>();
+                list = _db.Songs.Where(x => x.Name.ToLower().Contains(searchStr.ToLower())).Take(20).ToList();
+                return list;
 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                List<Song> list = new List<Song>();
+                return list;
+            }
+        }
         
         public void AddDance(Dance dance)
         {
@@ -142,6 +157,23 @@ namespace LineDanceWF.Services
                 MessageBox.Show(e.Message);
             }
         }
+        public List<Dance> FindTop20dances(string searchStr)
+        {
+            try
+            {
+                List<Dance> list = new List<Dance>();
+                list = _db.Dances.Where(x => x.Name.ToLower().Contains(searchStr.ToLower())).Take(20).ToList();
+                return list;
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                List<Dance> list = new List<Dance>();
+                return list;
+            }
+        }
+
 
         public string FolderPicker()
         {

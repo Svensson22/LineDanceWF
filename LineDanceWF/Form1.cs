@@ -7,7 +7,12 @@ namespace LineDanceWF
     public partial class Form1 : Form
     {
         private LDRepo _repo;
+        private List<Song> songlist;
+        private List<Dance> dancelist;
+
+
         public Form1()
+
         {
             _repo = new LDRepo(new LDContext());
             InitializeComponent();
@@ -18,12 +23,41 @@ namespace LineDanceWF
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void DanceSearch_TextChanged(object sender, EventArgs e)
         {
-            List<Song> songs = new List<Song>();
-            string searchText = DanceSearch.Text;
-            
-           
+            dancelist = new List<Dance>();
+            string searchText = SongSearch.Text;
+            danceListBox.Items.Clear();
+            if (searchText.Length != 0)
+            {
+                dancelist = _repo.FindTop20dances(searchText);
+
+                foreach (Dance dance in dancelist)
+                {
+                    danceListBox.Items.Add(dance.Name);
+                }
+            }
+        }
+        private void SongSearch_TextChanged(object sender, EventArgs e)
+        {
+            songlist = new List<Song>();
+            string searchText = SongSearch.Text;
+            songListbox.Items.Clear();
+            if (searchText.Length != 0)
+            {
+                songlist = _repo.FindTop20songs(searchText);
+
+                foreach (Song song in songlist)
+                {
+                    songListbox.Items.Add(song.Name);
+                }
+            }
+        }
+
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

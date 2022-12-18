@@ -46,7 +46,10 @@ namespace LineDanceWF
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.DanceSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.danceListBox = new System.Windows.Forms.ListBox();
+            this.SongLabel = new System.Windows.Forms.Label();
+            this.songListbox = new System.Windows.Forms.ListBox();
+            this.SongSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,11 +66,11 @@ namespace LineDanceWF
             // 
             // DanceSearch
             // 
-            this.DanceSearch.Location = new System.Drawing.Point(35, 316);
+            this.DanceSearch.Location = new System.Drawing.Point(33, 320);
             this.DanceSearch.Name = "DanceSearch";
             this.DanceSearch.Size = new System.Drawing.Size(227, 27);
             this.DanceSearch.TabIndex = 1;
-            this.DanceSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.DanceSearch.TextChanged += new System.EventHandler(this.DanceSearch_TextChanged);
             // 
             // label1
             // 
@@ -78,21 +81,50 @@ namespace LineDanceWF
             this.label1.TabIndex = 2;
             this.label1.Text = "Dances";
             // 
-            // listBox1
+            // danceListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(37, 365);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(283, 484);
-            this.listBox1.TabIndex = 3;
+            this.danceListBox.FormattingEnabled = true;
+            this.danceListBox.ItemHeight = 20;
+            this.danceListBox.Location = new System.Drawing.Point(33, 353);
+            this.danceListBox.Name = "danceListBox";
+            this.danceListBox.Size = new System.Drawing.Size(283, 484);
+            this.danceListBox.TabIndex = 3;
+            // 
+            // SongLabel
+            // 
+            this.SongLabel.AutoSize = true;
+            this.SongLabel.Location = new System.Drawing.Point(494, 281);
+            this.SongLabel.Name = "SongLabel";
+            this.SongLabel.Size = new System.Drawing.Size(49, 20);
+            this.SongLabel.TabIndex = 4;
+            this.SongLabel.Text = "Songs";
+            // 
+            // songListbox
+            // 
+            this.songListbox.FormattingEnabled = true;
+            this.songListbox.ItemHeight = 20;
+            this.songListbox.Location = new System.Drawing.Point(494, 353);
+            this.songListbox.Name = "songListbox";
+            this.songListbox.Size = new System.Drawing.Size(283, 484);
+            this.songListbox.TabIndex = 6;
+            // 
+            // SongSearch
+            // 
+            this.SongSearch.Location = new System.Drawing.Point(494, 320);
+            this.SongSearch.Name = "SongSearch";
+            this.SongSearch.Size = new System.Drawing.Size(227, 27);
+            this.SongSearch.TabIndex = 5;
+            this.SongSearch.TextChanged += new System.EventHandler(this.SongSearch_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2168, 1272);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.songListbox);
+            this.Controls.Add(this.SongSearch);
+            this.Controls.Add(this.SongLabel);
+            this.Controls.Add(this.danceListBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DanceSearch);
             this.Controls.Add(this.pictureBox1);
@@ -110,7 +142,9 @@ namespace LineDanceWF
         private PictureBox pictureBox1;
         private TextBox DanceSearch;
         private Label label1;
-        private ListBox listBox1;
-        
+        private ListBox danceListBox;
+        private Label SongLabel;
+        private ListBox songListbox;
+        private TextBox SongSearch;
     }
 }
