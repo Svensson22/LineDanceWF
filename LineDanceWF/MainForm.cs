@@ -1,17 +1,23 @@
 using LineDanceWF.Data;
 using LineDanceWF.Services;
 using System.Security.Cryptography.X509Certificates;
+using NAudio;
+using NAudio.Wave.SampleProviders;
+using NAudio.Wave;
 
 namespace LineDanceWF
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private LDRepo _repo;
         private List<Song> songlist;
         private List<Dance> dancelist;
 
+        private WaveOutEvent outputDevice;
+        private AudioFileReader audioFile;
 
-        public Form1()
+
+        public MainForm()
 
         {
             _repo = new LDRepo(new LDContext());
@@ -54,10 +60,39 @@ namespace LineDanceWF
             }
         }
 
-
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void OnButtonPlayClicked(object sender, EventArgs e)
         {
+            var song = _repo.GetSongByName(songListbox.Text);
 
+            if (song is null)
+                return;
+
+            if (outputDevice is null)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+            }
+
+            if (audioFile is null)
+            {
+                audioFile = new AudioFileReader(song.FilePath);
+                outputDevice.Init(audioFile);
+            }
+
+            outputDevice.Play();
+        }
+
+        private void OnButtonStopClicked(object sender, EventArgs e)
+        {
+            outputDevice?.Stop();
+        }
+
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
+        {
+            outputDevice.Dispose();
+            outputDevice = null;
+            audioFile.Dispose();
+            audioFile = null;
         }
     }
 }
