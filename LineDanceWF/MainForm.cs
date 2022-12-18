@@ -85,7 +85,6 @@ namespace LineDanceWF
         private void OnButtonStopClicked(object sender, EventArgs e)
         {
             outputDevice?.Stop();
-            outputDevice?.Dispose();
         }
 
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
