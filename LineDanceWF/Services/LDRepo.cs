@@ -1,4 +1,5 @@
 ﻿using LineDanceWF.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
 namespace LineDanceWF.Services
@@ -167,7 +168,7 @@ namespace LineDanceWF.Services
             try
             {
                 List<Dance> list = new List<Dance>();
-                list = _db.Dances.Where(x => x.Name.ToLower().Contains(searchStr.ToLower())).Take(20).ToList();
+                list = _db.Dances.Where(x => x.Name.ToLower().Contains(searchStr.ToLower())).Include(x => x.Alternatives).Include(x => x.OriginalSong).Take(20).ToList();
                 return list;
 
             }
