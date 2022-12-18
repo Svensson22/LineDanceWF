@@ -92,6 +92,7 @@ namespace LineDanceWF
             this.danceListBox.Name = "danceListBox";
             this.danceListBox.Size = new System.Drawing.Size(283, 484);
             this.danceListBox.TabIndex = 3;
+            this.danceListBox.SelectedIndexChanged += new System.EventHandler(this.danceListBox_SelectedIndexChanged);
             // 
             // SongLabel
             // 

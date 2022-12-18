@@ -100,5 +100,22 @@ namespace LineDanceWF
            AddDanceForm addDanceForm= new AddDanceForm();
             addDanceForm.ShowDialog();
         }
+
+        private void danceListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            songlist=new List<Song>();
+            Dance dance=new Dance();
+            dance = dancelist[danceListBox.SelectedIndex];
+            songlist.Add(dance.OriginalSong);
+            songListbox.Items.Clear();
+            foreach(Song song in dance.Alternatives)
+            {
+                songlist.Add(song);
+            }
+            foreach(Song song in songlist)
+            {
+                songListbox.Items.Add(song.Name);
+            }
+        }
     }
 }
