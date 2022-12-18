@@ -143,6 +143,12 @@ namespace LineDanceWF
         {
             dance.Name= AddDanceDanceNameLabel.Text;
             _repo.AddDance(dance);
+            this.Close();
+        }
+
+        private void AddDanceCancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

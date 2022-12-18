@@ -176,6 +176,7 @@
             this.AddDanceCancelBtn.TabIndex = 13;
             this.AddDanceCancelBtn.Text = "Cancel";
             this.AddDanceCancelBtn.UseVisualStyleBackColor = true;
+            this.AddDanceCancelBtn.Click += new System.EventHandler(this.AddDanceCancelBtn_Click);
             // 
             // AddDanceRemoveAlternative
             // 
