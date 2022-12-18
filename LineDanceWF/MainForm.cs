@@ -67,9 +67,18 @@ namespace LineDanceWF
             if (song is null)
                 return;
 
-            outputDevice = new WaveOutEvent();
-            audioFile = new AudioFileReader(song.FilePath);
-            outputDevice.Init(audioFile);
+            if (outputDevice is null)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+            }
+
+            if (audioFile is null)
+            {
+                audioFile = new AudioFileReader(song.FilePath);
+                outputDevice.Init(audioFile);
+            }
+
             outputDevice.Play();
         }
 
@@ -77,6 +86,14 @@ namespace LineDanceWF
         {
             outputDevice?.Stop();
             outputDevice?.Dispose();
+        }
+
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
+        {
+            outputDevice.Dispose();
+            outputDevice = null;
+            audioFile.Dispose();
+            audioFile = null;
         }
     }
 }
