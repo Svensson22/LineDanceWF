@@ -12,10 +12,10 @@ namespace LineDanceWF.Services
             _db = db;
         }
 
-        public void DemoMetod()
+        public Song DemoMetod()
         {
             // Prata med injectad dbcontext
-            var x = _db.Songs;
+            return _db.Songs.FirstOrDefault();
         }
 
         public void AddSong(Song song)

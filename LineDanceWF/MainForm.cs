@@ -1,6 +1,9 @@
 using LineDanceWF.Data;
 using LineDanceWF.Services;
 using System.Security.Cryptography.X509Certificates;
+using NAudio;
+using NAudio.Wave.SampleProviders;
+using NAudio.Wave;
 
 namespace LineDanceWF
 {
@@ -10,12 +13,22 @@ namespace LineDanceWF
         private List<Song> songlist;
         private List<Dance> dancelist;
 
+        private WaveOutEvent outputDevice;
+        private AudioFileReader audioFile;
+
 
         public MainForm()
 
         {
             _repo = new LDRepo(new LDContext());
             InitializeComponent();
+
+            var x = _repo.DemoMetod();
+            
+            outputDevice = new WaveOutEvent();
+            audioFile = new AudioFileReader(x.FilePath);
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,6 +66,12 @@ namespace LineDanceWF
                 }
             }
         }
+
+        //private void songListBox_SelectionChanged(object sender, EventArgs e)
+        //{
+        //    var test = e.ToString();
+        //    MessageBox.Show($"Selected {test}.");
+        //}
 
 
         private void Form1_Load_1(object sender, EventArgs e)
