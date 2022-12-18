@@ -32,7 +32,7 @@ namespace LineDanceWF
         private void DanceSearch_TextChanged(object sender, EventArgs e)
         {
             dancelist = new List<Dance>();
-            string searchText = SongSearch.Text;
+            string searchText = DanceSearch.Text;
             danceListBox.Items.Clear();
             if (searchText.Length != 0)
             {
@@ -93,6 +93,12 @@ namespace LineDanceWF
             outputDevice = null;
             audioFile.Dispose();
             audioFile = null;
+        }
+
+        private void AddDanceBtn_Click(object sender, EventArgs e)
+        {
+           AddDanceForm addDanceForm= new AddDanceForm();
+            addDanceForm.ShowDialog();
         }
     }
 }
