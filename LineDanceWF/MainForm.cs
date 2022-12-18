@@ -4,14 +4,14 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace LineDanceWF
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private LDRepo _repo;
         private List<Song> songlist;
         private List<Dance> dancelist;
 
 
-        public Form1()
+        public MainForm()
 
         {
             _repo = new LDRepo(new LDContext());
