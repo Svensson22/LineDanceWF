@@ -22,13 +22,6 @@ namespace LineDanceWF
         {
             _repo = new LDRepo(new LDContext());
             InitializeComponent();
-
-            var x = _repo.DemoMetod();
-            
-            outputDevice = new WaveOutEvent();
-            audioFile = new AudioFileReader(x.FilePath);
-            outputDevice.Init(audioFile);
-            outputDevice.Play();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -67,16 +60,22 @@ namespace LineDanceWF
             }
         }
 
-        //private void songListBox_SelectionChanged(object sender, EventArgs e)
-        //{
-        //    var test = e.ToString();
-        //    MessageBox.Show($"Selected {test}.");
-        //}
-
-
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void OnButtonPlayClicked(object sender, EventArgs e)
         {
+            var song = _repo.GetSongByName(songListbox.Text);
 
+            if (song is null)
+                return;
+
+            outputDevice = new WaveOutEvent();
+            audioFile = new AudioFileReader(song.FilePath);
+            outputDevice.Init(audioFile);
+            outputDevice.Play();
+        }
+
+        private void OnButtonStopClicked(object sender, EventArgs e)
+        {
+            outputDevice?.Stop();
         }
     }
 }

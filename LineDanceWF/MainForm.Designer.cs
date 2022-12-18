@@ -50,6 +50,8 @@ namespace LineDanceWF
             this.SongLabel = new System.Windows.Forms.Label();
             this.songListbox = new System.Windows.Forms.ListBox();
             this.SongSearch = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,11 +123,33 @@ namespace LineDanceWF
             this.SongSearch.TabIndex = 5;
             this.SongSearch.TextChanged += new System.EventHandler(this.SongSearch_TextChanged);
             // 
-            // Form1
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(769, 234);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Play";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.OnButtonPlayClicked);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(769, 253);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Stop";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.OnButtonStopClicked);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1124, 526);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.songListbox);
             this.Controls.Add(this.SongSearch);
             this.Controls.Add(this.SongLabel);
@@ -134,8 +158,8 @@ namespace LineDanceWF
             this.Controls.Add(this.DanceSearch);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Linedance";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -153,5 +177,7 @@ namespace LineDanceWF
         private Label SongLabel;
         private ListBox songListbox;
         private TextBox SongSearch;
+        private Button button1;
+        private Button button2;
     }
 }

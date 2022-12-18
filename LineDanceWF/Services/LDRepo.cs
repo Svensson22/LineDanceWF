@@ -18,6 +18,11 @@ namespace LineDanceWF.Services
             return _db.Songs.FirstOrDefault();
         }
 
+        public Song? GetSongByName(string name)
+        {
+            return _db.Songs.Where(x => x.Name == name).FirstOrDefault();
+        }
+
         public void AddSong(Song song)
         {
             if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() != 0)
