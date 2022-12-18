@@ -10,7 +10,7 @@ namespace LineDanceWF.Data
         public string? Name { get; set; } = string.Empty;
         public int? OriginalSongID { get; set; }
         public Song? OriginalSong { get; set; }
-        public virtual ObservableCollectionListSource<Song>? Alternatives { get; set; }
+        public virtual ObservableCollectionListSource<Song>? Alternatives { get; set; } = new ObservableCollectionListSource<Song>();
         public virtual ObservableCollectionListSource<Playlist>? Playlists { get; set; }
     }
 }

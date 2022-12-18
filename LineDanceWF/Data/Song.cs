@@ -8,6 +8,6 @@ namespace LineDanceWF.Data
         public string Name { get; set; } = string.Empty;
         public string FileHash { get; set; } = string.Empty;
         public string FilePath { get; set; } = string.Empty;
-        public virtual ObservableCollectionListSource<Dance>? Dances { get; set; }
+        public virtual ObservableCollectionListSource<Dance>? Dances { get; set; }= new ObservableCollectionListSource<Dance>();
     }
 }
