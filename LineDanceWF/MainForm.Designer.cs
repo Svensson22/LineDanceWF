@@ -62,7 +62,7 @@ namespace LineDanceWF
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(2564, 192);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -71,8 +71,8 @@ namespace LineDanceWF
             // 
             // DanceSearch
             // 
-            this.DanceSearch.Location = new System.Drawing.Point(54, 512);
-            this.DanceSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.DanceSearch.Location = new System.Drawing.Point(54, 286);
+            this.DanceSearch.Margin = new System.Windows.Forms.Padding(5);
             this.DanceSearch.Name = "DanceSearch";
             this.DanceSearch.Size = new System.Drawing.Size(366, 39);
             this.DanceSearch.TabIndex = 1;
@@ -81,7 +81,7 @@ namespace LineDanceWF
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 450);
+            this.label1.Location = new System.Drawing.Point(54, 224);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 32);
@@ -92,8 +92,8 @@ namespace LineDanceWF
             // 
             this.danceListBox.FormattingEnabled = true;
             this.danceListBox.ItemHeight = 32;
-            this.danceListBox.Location = new System.Drawing.Point(54, 565);
-            this.danceListBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.danceListBox.Location = new System.Drawing.Point(54, 339);
+            this.danceListBox.Margin = new System.Windows.Forms.Padding(5);
             this.danceListBox.Name = "danceListBox";
             this.danceListBox.Size = new System.Drawing.Size(457, 772);
             this.danceListBox.TabIndex = 3;
@@ -102,7 +102,7 @@ namespace LineDanceWF
             // SongLabel
             // 
             this.SongLabel.AutoSize = true;
-            this.SongLabel.Location = new System.Drawing.Point(803, 450);
+            this.SongLabel.Location = new System.Drawing.Point(803, 224);
             this.SongLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.SongLabel.Name = "SongLabel";
             this.SongLabel.Size = new System.Drawing.Size(79, 32);
@@ -113,16 +113,16 @@ namespace LineDanceWF
             // 
             this.songListbox.FormattingEnabled = true;
             this.songListbox.ItemHeight = 32;
-            this.songListbox.Location = new System.Drawing.Point(803, 565);
-            this.songListbox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.songListbox.Location = new System.Drawing.Point(803, 339);
+            this.songListbox.Margin = new System.Windows.Forms.Padding(5);
             this.songListbox.Name = "songListbox";
             this.songListbox.Size = new System.Drawing.Size(457, 772);
             this.songListbox.TabIndex = 6;
             // 
             // SongSearch
             // 
-            this.SongSearch.Location = new System.Drawing.Point(803, 512);
-            this.SongSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.SongSearch.Location = new System.Drawing.Point(803, 286);
+            this.SongSearch.Margin = new System.Windows.Forms.Padding(5);
             this.SongSearch.Name = "SongSearch";
             this.SongSearch.Size = new System.Drawing.Size(366, 39);
             this.SongSearch.TabIndex = 5;
@@ -130,7 +130,7 @@ namespace LineDanceWF
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1428, 499);
+            this.button1.Location = new System.Drawing.Point(1428, 273);
             this.button1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 50);
@@ -141,7 +141,7 @@ namespace LineDanceWF
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1428, 539);
+            this.button2.Location = new System.Drawing.Point(1428, 313);
             this.button2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 50);
@@ -152,8 +152,8 @@ namespace LineDanceWF
             // 
             // AddDanceBtn
             // 
-            this.AddDanceBtn.Location = new System.Drawing.Point(57, 1349);
-            this.AddDanceBtn.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.AddDanceBtn.Location = new System.Drawing.Point(57, 1123);
+            this.AddDanceBtn.Margin = new System.Windows.Forms.Padding(5);
             this.AddDanceBtn.Name = "AddDanceBtn";
             this.AddDanceBtn.Size = new System.Drawing.Size(457, 61);
             this.AddDanceBtn.TabIndex = 9;
@@ -163,7 +163,7 @@ namespace LineDanceWF
             // 
             // volumeSlider1
             // 
-            this.volumeSlider1.Location = new System.Drawing.Point(1409, 450);
+            this.volumeSlider1.Location = new System.Drawing.Point(1409, 224);
             this.volumeSlider1.Name = "volumeSlider1";
             this.volumeSlider1.Size = new System.Drawing.Size(192, 32);
             this.volumeSlider1.TabIndex = 10;
@@ -171,8 +171,7 @@ namespace LineDanceWF
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(2564, 1399);
             this.Controls.Add(this.volumeSlider1);
             this.Controls.Add(this.AddDanceBtn);
@@ -185,7 +184,7 @@ namespace LineDanceWF
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DanceSearch);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "MainForm";
             this.Text = "Linedance";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
