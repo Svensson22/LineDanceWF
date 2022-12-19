@@ -178,16 +178,20 @@ namespace LineDanceWF.Services
         {
             try
             {
-                var sw = Stopwatch.StartNew();
+                var swInit = Stopwatch.StartNew();
                 var files = new ConcurrentBag<string>();
                 var songs = new List<Song>();
                 var dbSongs = _db.Songs.ToList();
                 int AmountOfNewSongs = 0;
                 int AmountOfExistingSongs = 0;
+                swInit.Stop();
 
+                var swPaths = Stopwatch.StartNew();
                 foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
                     files.Add(Path.GetFullPath(file));
+                swPaths.Stop();
 
+                var swLoop = Stopwatch.StartNew();
                 Parallel.ForEach(files, async file =>
                 {
                     var ext = Path.GetExtension(file);
@@ -217,10 +221,17 @@ namespace LineDanceWF.Services
                     }
                 });
 
-                AddSongs(songs);
+                swLoop.Stop();
 
-                sw.Stop();
-                MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped. This took {sw.ElapsedMilliseconds} milliseconds.");
+                var swAddSongs = Stopwatch.StartNew();
+                AddSongs(songs);
+                swAddSongs.Stop();
+ 
+                MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped." +
+                    $"\nInit: {swInit.ElapsedMilliseconds}ms, " +
+                    $"Paths: {swPaths.ElapsedMilliseconds}ms, " +
+                    $"Loop: {swLoop.ElapsedMilliseconds}ms ," +
+                    $"AddSongs: {swAddSongs.ElapsedMilliseconds}ms.");
             }
 
             catch (Exception e)
