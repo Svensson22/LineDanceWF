@@ -77,6 +77,7 @@ namespace LineDanceWF
             if (wavePlayer is not null)
             {
                 wavePlayer.Stop();
+                LoadFile(song.FilePath);
             }
 
             // Audio stream för speed control
@@ -118,12 +119,10 @@ namespace LineDanceWF
 
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
-            wavePlayer?.Dispose();
-            wavePlayer = null;
-            reader?.Dispose();
-            reader = null;
-            speedControl?.Dispose();
-            speedControl = null;
+            if (args.Exception != null)
+            {
+                MessageBox.Show(args.Exception.Message, "Playback Stopped Unexpectedly");
+            }
         }
 
         private void AddDanceBtn_Click(object sender, EventArgs e)
