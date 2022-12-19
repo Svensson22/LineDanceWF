@@ -230,7 +230,7 @@ namespace LineDanceWF.Services
                 MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped." +
                     $"\nInit: {swInit.ElapsedMilliseconds}ms, " +
                     $"Paths: {swPaths.ElapsedMilliseconds}ms, " +
-                    $"Loop: {swLoop.ElapsedMilliseconds}ms ," +
+                    $"Loop: {swLoop.ElapsedMilliseconds}ms, " +
                     $"AddSongs: {swAddSongs.ElapsedMilliseconds}ms.");
             }
 
