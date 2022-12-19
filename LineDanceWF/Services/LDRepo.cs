@@ -292,7 +292,7 @@ namespace LineDanceWF.Services
             }
             catch (UnauthorizedAccessException e)
             {
-                MessageBox.Show(e.Message + "\nPlease pick a folder that you have acess to");
+                MessageBox.Show(e.Message + "\nPlease pick a folder that you have access to");
             }
             catch (System.IO.DirectoryNotFoundException e)
             {
