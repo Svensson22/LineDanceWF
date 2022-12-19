@@ -25,7 +25,7 @@ namespace LineDanceWF
         protected override void OnLoad(EventArgs e)
         {
             LDContext db = new LDContext();
-            //db.Database.EnsureDeleted();
+            db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
             LDRepo lDRepo = new LDRepo(db);
             //Delete later just testing to see were it stops
@@ -212,8 +212,9 @@ namespace LineDanceWF
             this.tempoLabel.AutoSize = true;
             this.tempoLabel.Location = new System.Drawing.Point(1609, 417);
             this.tempoLabel.Name = "tempoLabel";
-            this.tempoLabel.Size = new System.Drawing.Size(0, 32);
+            this.tempoLabel.Size = new System.Drawing.Size(140, 32);
             this.tempoLabel.TabIndex = 14;
+            this.tempoLabel.Text = "tempoLabel";
             // 
             // MainForm
             // 

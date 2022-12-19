@@ -1,5 +1,7 @@
 ﻿using LineDanceWF.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Security.Cryptography;
 
 namespace LineDanceWF.Services
@@ -11,12 +13,6 @@ namespace LineDanceWF.Services
         public LDRepo(LDContext db)
         {
             _db = db;
-        }
-
-        public Song DemoMetod()
-        {
-            // Prata med injectad dbcontext
-            return _db.Songs.FirstOrDefault();
         }
 
         public Song? GetSongByName(string name)
@@ -36,14 +32,12 @@ namespace LineDanceWF.Services
                 SongExist(song);
             }
         }
+
         //Need to have exist checks when making the list
         //before the call of this one
         public void AddSongs(List<Song> songs)
         {
-            foreach (Song song in songs)
-            {
-                _db.Songs.Add(song);
-            }
+            _db.Songs.AddRange(songs);
             _db.SaveChanges();
         }
 
@@ -107,23 +101,10 @@ namespace LineDanceWF.Services
                 MessageBox.Show(e.Message);
             }
         }
-        public void DanceExist(Dance dance)
-        {
-            MessageBox.Show($"{dance.Name} already exist, please enter another one");
-        }
-        public void DanceNotExist(Dance dance)
-        {
-            MessageBox.Show($"{dance.Name} Don't exist, please enter another one");
-        }
-        public void SongExist(Song song)
-        {
-            MessageBox.Show($"{song.Name} already exist, please enter another one");
-        }
-        public void SongNotExist(Song song)
-        {
-            MessageBox.Show($"{song.Name} Don't exist, please enter another one");
-        }
-
+        public void DanceExist(Dance dance) => MessageBox.Show($"{dance.Name} already exist, please enter another one");
+        public void DanceNotExist(Dance dance) => MessageBox.Show($"{dance.Name} Don't exist, please enter another one");
+        public void SongExist(Song song) => MessageBox.Show($"{song.Name} already exist, please enter another one");
+        public void SongNotExist(Song song) => MessageBox.Show($"{song.Name} Don't exist, please enter another one");
 
         public void DeleteDance(Dance dance)
         {
@@ -179,8 +160,6 @@ namespace LineDanceWF.Services
                 return list;
             }
         }
-
-
         public string FolderPicker()
         {
             using (var fbd = new FolderBrowserDialog())
@@ -189,15 +168,72 @@ namespace LineDanceWF.Services
                 return fbd.SelectedPath;
             }
         }
-        public void AddSongsFromFolder()
+        public async void AddSongsFromFolder()
         {
-            MessageBox.Show("You need to chose a default folder to import files from.");
-            AddSongsFromFolder(FolderPicker());
+            MessageBox.Show("You need to choose a default folder to import files from.");
+            await AddSongsFromFolderAsync(FolderPicker());
+            //AddSongsFromFolder(FolderPicker());
         }
+        public async Task AddSongsFromFolderAsync(string path)
+        {
+            try
+            {
+                var sw = Stopwatch.StartNew();
+                var files = new ConcurrentBag<string>();
+                var songs = new List<Song>();
+                var dbSongs = _db.Songs.ToList();
+                int AmountOfNewSongs = 0;
+                int AmountOfExistingSongs = 0;
+
+                foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
+                    files.Add(Path.GetFullPath(file));
+
+                Parallel.ForEach(files, async file =>
+                {
+                    var ext = Path.GetExtension(file);
+
+                    //Searching for files with the extension we want to be able to play
+                    if (ext == ".mp3" || ext == ".m4a" || ext == ".wav" || ext == ".ogg")
+                    {
+                        var song = new Song()
+                        {
+                            Name = Path.GetFileName(file),
+                            FilePath = Path.GetFullPath(file),
+                            FileHash = GetHash(Path.GetFullPath(file)),
+                        };
+
+                        var x = dbSongs.Where(x => x.FileHash.Equals(song.FileHash)).Count();
+
+                        if (x == 0)
+                        {
+                            songs.Add(song);
+                            AmountOfNewSongs++;
+                        }
+
+                        else
+                        {
+                            AmountOfExistingSongs++;
+                        }
+                    }
+                });
+
+                AddSongs(songs);
+
+                sw.Stop();
+                MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped. This took {sw.ElapsedMilliseconds} milliseconds.");
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show($"Exception: {e.Message}");
+            }
+        }
+
         public void AddSongsFromFolder(string path)
         {
             try
             {
+                var sw = Stopwatch.StartNew();
                 List<Song> songs = new List<Song>();
                 int AmountOfNewSongs = 0;
                 int AmountOfExistingSongs = 0;
@@ -239,7 +275,8 @@ namespace LineDanceWF.Services
                     }
                 }
                 AddSongs(songs);
-                MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped.");
+                sw.Stop();
+                MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped. This took {sw.ElapsedMilliseconds} milliseconds.");
 
             }
             catch (UnauthorizedAccessException e)
