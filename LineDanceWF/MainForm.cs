@@ -70,6 +70,7 @@ namespace LineDanceWF
             if (outputDevice is null)
             {
                 outputDevice = new WaveOutEvent();
+                outputDevice.Volume = volumeSlider1.Volume;
                 outputDevice.PlaybackStopped += OnPlaybackStopped;
             }
 
@@ -116,6 +117,12 @@ namespace LineDanceWF
             {
                 songListbox.Items.Add(song.Name);
             }
+        }
+
+        private void OnVolumeChanged(object sender, EventArgs e)
+        {
+            if (outputDevice is not null)
+                outputDevice.Volume = volumeSlider1.Volume;
         }
     }
 }
