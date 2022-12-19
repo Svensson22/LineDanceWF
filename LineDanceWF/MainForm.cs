@@ -162,5 +162,10 @@ namespace LineDanceWF
 
             tempoLabel.Text = $"{tempoBar.Value / 100f}x";
         }
+
+        private void AddSongsBtn_Click(object sender, EventArgs e)
+        {
+            _repo.AddSongsFromFolder();
+        }
     }
 }

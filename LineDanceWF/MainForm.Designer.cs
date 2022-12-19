@@ -67,6 +67,7 @@ namespace LineDanceWF
             this.label3 = new System.Windows.Forms.Label();
             this.tempoLabel = new System.Windows.Forms.Label();
             this.loadMessage = new System.Windows.Forms.Label();
+            this.AddSongsBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempoBar)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +89,7 @@ namespace LineDanceWF
             this.DanceSearch.Location = new System.Drawing.Point(54, 286);
             this.DanceSearch.Margin = new System.Windows.Forms.Padding(5);
             this.DanceSearch.Name = "DanceSearch";
-            this.DanceSearch.Size = new System.Drawing.Size(366, 39);
+            this.DanceSearch.Size = new System.Drawing.Size(366, 27);
             this.DanceSearch.TabIndex = 1;
             this.DanceSearch.TextChanged += new System.EventHandler(this.DanceSearch_TextChanged);
             // 
@@ -98,18 +99,18 @@ namespace LineDanceWF
             this.label1.Location = new System.Drawing.Point(54, 224);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 32);
+            this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Dances";
             // 
             // danceListBox
             // 
             this.danceListBox.FormattingEnabled = true;
-            this.danceListBox.ItemHeight = 32;
+            this.danceListBox.ItemHeight = 20;
             this.danceListBox.Location = new System.Drawing.Point(54, 339);
             this.danceListBox.Margin = new System.Windows.Forms.Padding(5);
             this.danceListBox.Name = "danceListBox";
-            this.danceListBox.Size = new System.Drawing.Size(457, 772);
+            this.danceListBox.Size = new System.Drawing.Size(457, 764);
             this.danceListBox.TabIndex = 3;
             this.danceListBox.SelectedIndexChanged += new System.EventHandler(this.danceListBox_SelectedIndexChanged);
             // 
@@ -119,18 +120,18 @@ namespace LineDanceWF
             this.SongLabel.Location = new System.Drawing.Point(803, 224);
             this.SongLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.SongLabel.Name = "SongLabel";
-            this.SongLabel.Size = new System.Drawing.Size(79, 32);
+            this.SongLabel.Size = new System.Drawing.Size(49, 20);
             this.SongLabel.TabIndex = 4;
             this.SongLabel.Text = "Songs";
             // 
             // songListbox
             // 
             this.songListbox.FormattingEnabled = true;
-            this.songListbox.ItemHeight = 32;
+            this.songListbox.ItemHeight = 20;
             this.songListbox.Location = new System.Drawing.Point(803, 339);
             this.songListbox.Margin = new System.Windows.Forms.Padding(5);
             this.songListbox.Name = "songListbox";
-            this.songListbox.Size = new System.Drawing.Size(457, 772);
+            this.songListbox.Size = new System.Drawing.Size(457, 764);
             this.songListbox.TabIndex = 6;
             // 
             // SongSearch
@@ -138,7 +139,7 @@ namespace LineDanceWF
             this.SongSearch.Location = new System.Drawing.Point(803, 286);
             this.SongSearch.Margin = new System.Windows.Forms.Padding(5);
             this.SongSearch.Name = "SongSearch";
-            this.SongSearch.Size = new System.Drawing.Size(366, 39);
+            this.SongSearch.Size = new System.Drawing.Size(366, 27);
             this.SongSearch.TabIndex = 5;
             this.SongSearch.TextChanged += new System.EventHandler(this.SongSearch_TextChanged);
             // 
@@ -189,7 +190,7 @@ namespace LineDanceWF
             this.tempoBar.Maximum = 120;
             this.tempoBar.Minimum = 80;
             this.tempoBar.Name = "tempoBar";
-            this.tempoBar.Size = new System.Drawing.Size(208, 90);
+            this.tempoBar.Size = new System.Drawing.Size(208, 56);
             this.tempoBar.TabIndex = 11;
             this.tempoBar.Value = 100;
             this.tempoBar.Scroll += new System.EventHandler(this.OnTempoChanged);
@@ -199,7 +200,7 @@ namespace LineDanceWF
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(1401, 471);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 32);
+            this.label2.Size = new System.Drawing.Size(34, 20);
             this.label2.TabIndex = 12;
             this.label2.Text = "Min";
             // 
@@ -208,7 +209,7 @@ namespace LineDanceWF
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(1555, 471);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 32);
+            this.label3.Size = new System.Drawing.Size(37, 20);
             this.label3.TabIndex = 13;
             this.label3.Text = "Max";
             // 
@@ -217,7 +218,7 @@ namespace LineDanceWF
             this.tempoLabel.AutoSize = true;
             this.tempoLabel.Location = new System.Drawing.Point(1609, 417);
             this.tempoLabel.Name = "tempoLabel";
-            this.tempoLabel.Size = new System.Drawing.Size(140, 32);
+            this.tempoLabel.Size = new System.Drawing.Size(89, 20);
             this.tempoLabel.TabIndex = 14;
             this.tempoLabel.Text = "tempoLabel";
             // 
@@ -227,14 +228,25 @@ namespace LineDanceWF
             this.loadMessage.Font = new System.Drawing.Font("Segoe UI", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.loadMessage.Location = new System.Drawing.Point(1313, 609);
             this.loadMessage.Name = "loadMessage";
-            this.loadMessage.Size = new System.Drawing.Size(338, 71);
+            this.loadMessage.Size = new System.Drawing.Size(217, 46);
             this.loadMessage.TabIndex = 15;
             this.loadMessage.Text = "loadMessage";
+            // 
+            // AddSongsBtn
+            // 
+            this.AddSongsBtn.Location = new System.Drawing.Point(1361, 1026);
+            this.AddSongsBtn.Name = "AddSongsBtn";
+            this.AddSongsBtn.Size = new System.Drawing.Size(169, 77);
+            this.AddSongsBtn.TabIndex = 16;
+            this.AddSongsBtn.Text = "Add new songs";
+            this.AddSongsBtn.UseVisualStyleBackColor = true;
+            this.AddSongsBtn.Click += new System.EventHandler(this.AddSongsBtn_Click);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(2564, 1399);
+            this.Controls.Add(this.AddSongsBtn);
             this.Controls.Add(this.loadMessage);
             this.Controls.Add(this.tempoLabel);
             this.Controls.Add(this.label3);
@@ -281,5 +293,6 @@ namespace LineDanceWF
         private Label label3;
         private Label tempoLabel;
         private Label loadMessage;
+        private Button AddSongsBtn;
     }
 }
