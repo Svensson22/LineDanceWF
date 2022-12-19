@@ -55,6 +55,9 @@ namespace LineDanceWF
             this.AddDanceBtn = new System.Windows.Forms.Button();
             this.volumeSlider1 = new NAudio.Gui.VolumeSlider();
             this.tempoBar = new System.Windows.Forms.TrackBar();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tempoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempoBar)).BeginInit();
             this.SuspendLayout();
@@ -182,10 +185,39 @@ namespace LineDanceWF
             this.tempoBar.Value = 100;
             this.tempoBar.Scroll += new System.EventHandler(this.OnTempoChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1401, 471);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 32);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "0.9x";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1555, 471);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 32);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "1.1x";
+            // 
+            // tempoLabel
+            // 
+            this.tempoLabel.AutoSize = true;
+            this.tempoLabel.Location = new System.Drawing.Point(1609, 417);
+            this.tempoLabel.Name = "tempoLabel";
+            this.tempoLabel.Size = new System.Drawing.Size(0, 32);
+            this.tempoLabel.TabIndex = 14;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(2564, 1399);
+            this.Controls.Add(this.tempoLabel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tempoBar);
             this.Controls.Add(this.volumeSlider1);
             this.Controls.Add(this.AddDanceBtn);
@@ -224,5 +256,8 @@ namespace LineDanceWF
         private Button AddDanceBtn;
         private NAudio.Gui.VolumeSlider volumeSlider1;
         private TrackBar tempoBar;
+        private Label label2;
+        private Label label3;
+        private Label tempoLabel;
     }
 }
