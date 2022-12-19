@@ -30,9 +30,10 @@ namespace LineDanceWF
         private void Form1_Load(object sender, EventArgs e)
         {
             tempoLabel.Text = $"{tempoBar.Value / 100f}x";
-
             label2.Text = $"{tempoBar.Minimum / 100f}x";
             label3.Text = $"{tempoBar.Maximum / 100f}x";
+
+            loadMessage.Text = "";
         }
 
         private void DanceSearch_TextChanged(object sender, EventArgs e)

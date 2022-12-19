@@ -34,7 +34,11 @@ namespace LineDanceWF
 
             var songs = db.Songs.ToList();
             if (songs.Count == 0)
+            {
+                loadMessage.Text = "Adding songs to database..";
                 lDRepo.AddSongsFromFolder();
+                loadMessage.Text = "";
+            }
 
             base.OnLoad(e);
         }
@@ -62,6 +66,7 @@ namespace LineDanceWF
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tempoLabel = new System.Windows.Forms.Label();
+            this.loadMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempoBar)).BeginInit();
             this.SuspendLayout();
@@ -216,10 +221,21 @@ namespace LineDanceWF
             this.tempoLabel.TabIndex = 14;
             this.tempoLabel.Text = "tempoLabel";
             // 
+            // loadMessage
+            // 
+            this.loadMessage.AutoSize = true;
+            this.loadMessage.Font = new System.Drawing.Font("Segoe UI", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.loadMessage.Location = new System.Drawing.Point(1313, 609);
+            this.loadMessage.Name = "loadMessage";
+            this.loadMessage.Size = new System.Drawing.Size(338, 71);
+            this.loadMessage.TabIndex = 15;
+            this.loadMessage.Text = "loadMessage";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(2564, 1399);
+            this.Controls.Add(this.loadMessage);
             this.Controls.Add(this.tempoLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -264,5 +280,6 @@ namespace LineDanceWF
         private Label label2;
         private Label label3;
         private Label tempoLabel;
+        private Label loadMessage;
     }
 }
