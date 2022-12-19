@@ -1,5 +1,6 @@
 using LineDanceWF.Data;
 using LineDanceWF.Services;
+using LineDanceWF.SoundTouch;
 using System.Security.Cryptography.X509Certificates;
 using NAudio;
 using NAudio.Wave.SampleProviders;
@@ -13,8 +14,10 @@ namespace LineDanceWF
         private List<Song> songlist;
         private List<Dance> dancelist;
 
-        private WaveOutEvent outputDevice;
-        private AudioFileReader audioFile;
+        //private WaveOutEvent waveOut;
+        private IWavePlayer wavePlayer;
+        private AudioFileReader reader;
+        private VarispeedSampleProvider speedControl;
 
 
         public MainForm()
@@ -67,33 +70,55 @@ namespace LineDanceWF
             if (song is null)
                 return;
 
-            if (outputDevice is null)
+            // Kolla om en låt redan spelas
+            if (wavePlayer is not null)
             {
-                outputDevice = new WaveOutEvent();
-                outputDevice.Volume = volumeSlider1.Volume;
-                outputDevice.PlaybackStopped += OnPlaybackStopped;
+                wavePlayer.Stop();
             }
 
-            if (audioFile is null)
+            // Audio stream för speed control
+            if (wavePlayer is null)
             {
-                audioFile = new AudioFileReader(song.FilePath);
-                outputDevice.Init(audioFile);
+                wavePlayer = new WaveOutEvent();
+                wavePlayer.Volume = volumeSlider1.Volume;
+                wavePlayer.PlaybackStopped += OnPlaybackStopped;
             }
 
-            outputDevice.Play();
+            if (speedControl is null)
+            {
+                LoadFile(song.FilePath);
+                if (speedControl is null) return;
+            }
+
+            wavePlayer.Init(speedControl);
+            wavePlayer.Play();
+        }
+
+        private void LoadFile(string file)
+        {
+            reader?.Dispose();
+            speedControl?.Dispose();
+            reader = null;
+            speedControl = null;
+
+            reader = new AudioFileReader(file);
+
+            speedControl = new VarispeedSampleProvider(reader, 200, new SoundTouchProfile(true, true));
         }
 
         private void OnButtonStopClicked(object sender, EventArgs e)
         {
-            outputDevice?.Stop();
+            wavePlayer?.Stop();
         }
 
         private void OnPlaybackStopped(object sender, StoppedEventArgs args)
         {
-            outputDevice.Dispose();
-            outputDevice = null;
-            audioFile.Dispose();
-            audioFile = null;
+            wavePlayer?.Dispose();
+            wavePlayer = null;
+            reader?.Dispose();
+            reader = null;
+            speedControl?.Dispose();
+            speedControl = null;
         }
 
         private void AddDanceBtn_Click(object sender, EventArgs e)
@@ -121,8 +146,13 @@ namespace LineDanceWF
 
         private void OnVolumeChanged(object sender, EventArgs e)
         {
-            if (outputDevice is not null)
-                outputDevice.Volume = volumeSlider1.Volume;
+            if (wavePlayer is not null)
+                wavePlayer.Volume = volumeSlider1.Volume;
+        }
+
+        private void OnTempoChanged(object sender, EventArgs e)
+        {
+            speedControl.PlaybackRate = tempoBar.Value / 100f;
         }
     }
 }

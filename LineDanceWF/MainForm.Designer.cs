@@ -54,7 +54,9 @@ namespace LineDanceWF
             this.button2 = new System.Windows.Forms.Button();
             this.AddDanceBtn = new System.Windows.Forms.Button();
             this.volumeSlider1 = new NAudio.Gui.VolumeSlider();
+            this.tempoBar = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempoBar)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -167,12 +169,24 @@ namespace LineDanceWF
             this.volumeSlider1.Name = "volumeSlider1";
             this.volumeSlider1.Size = new System.Drawing.Size(192, 32);
             this.volumeSlider1.TabIndex = 10;
-            this.volumeSlider1.Click += new System.EventHandler(this.OnVolumeChanged);
+            this.volumeSlider1.VolumeChanged += new System.EventHandler(this.OnVolumeChanged);
+            // 
+            // tempoBar
+            // 
+            this.tempoBar.Location = new System.Drawing.Point(1393, 415);
+            this.tempoBar.Maximum = 110;
+            this.tempoBar.Minimum = 90;
+            this.tempoBar.Name = "tempoBar";
+            this.tempoBar.Size = new System.Drawing.Size(208, 90);
+            this.tempoBar.TabIndex = 11;
+            this.tempoBar.Value = 100;
+            this.tempoBar.Scroll += new System.EventHandler(this.OnTempoChanged);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(2564, 1399);
+            this.Controls.Add(this.tempoBar);
             this.Controls.Add(this.volumeSlider1);
             this.Controls.Add(this.AddDanceBtn);
             this.Controls.Add(this.button2);
@@ -190,6 +204,7 @@ namespace LineDanceWF
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempoBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +223,6 @@ namespace LineDanceWF
         private Button button2;
         private Button AddDanceBtn;
         private NAudio.Gui.VolumeSlider volumeSlider1;
+        private TrackBar tempoBar;
     }
 }
