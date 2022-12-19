@@ -177,8 +177,8 @@ namespace LineDanceWF
             // tempoBar
             // 
             this.tempoBar.Location = new System.Drawing.Point(1393, 415);
-            this.tempoBar.Maximum = 110;
-            this.tempoBar.Minimum = 90;
+            this.tempoBar.Maximum = 120;
+            this.tempoBar.Minimum = 80;
             this.tempoBar.Name = "tempoBar";
             this.tempoBar.Size = new System.Drawing.Size(208, 90);
             this.tempoBar.TabIndex = 11;
@@ -192,16 +192,16 @@ namespace LineDanceWF
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 32);
             this.label2.TabIndex = 12;
-            this.label2.Text = "0.9x";
+            this.label2.Text = "Min";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(1555, 471);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 32);
+            this.label3.Size = new System.Drawing.Size(59, 32);
             this.label3.TabIndex = 13;
-            this.label3.Text = "1.1x";
+            this.label3.Text = "Max";
             // 
             // tempoLabel
             // 
