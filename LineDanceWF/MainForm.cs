@@ -90,6 +90,7 @@ namespace LineDanceWF
                 if (speedControl is null) return;
             }
 
+            speedControl.PlaybackRate = tempoBar.Value / 100f;
             wavePlayer.Init(speedControl);
             wavePlayer.Play();
         }
