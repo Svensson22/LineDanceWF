@@ -26,7 +26,7 @@ namespace LineDanceWF.Services
         public DbSet<Song>? Songs { get; set; }
         public DbSet<Playlist>? Playlists { get; set; }
 
-        protected override  void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Song>()
                 .HasMany(s => s.Dances)

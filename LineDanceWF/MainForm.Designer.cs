@@ -31,7 +31,11 @@ namespace LineDanceWF
             //Delete later just testing to see were it stops
             //pick a folder were you have music to check if it adds
             //Atm issues with conection to database
-            //lDRepo.AddSongsFromFolder();
+
+            var songs = db.Songs.ToList();
+            if (songs.Count == 0)
+                lDRepo.AddSongsFromFolder();
+
             base.OnLoad(e);
         }
         #region Windows Form Designer generated code
@@ -243,7 +247,7 @@ namespace LineDanceWF
         }
 
         #endregion
-        
+
         private PictureBox pictureBox1;
         private TextBox DanceSearch;
         private Label label1;

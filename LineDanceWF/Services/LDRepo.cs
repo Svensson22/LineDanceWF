@@ -40,7 +40,7 @@ namespace LineDanceWF.Services
         //before the call of this one
         public void AddSongs(List<Song> songs)
         {
-            foreach(Song song in songs)
+            foreach (Song song in songs)
             {
                 _db.Songs.Add(song);
             }
@@ -87,7 +87,7 @@ namespace LineDanceWF.Services
                 return list;
             }
         }
-        
+
         public void AddDance(Dance dance)
         {
             try
@@ -202,21 +202,21 @@ namespace LineDanceWF.Services
                 int AmountOfNewSongs = 0;
                 int AmountOfExistingSongs = 0;
 
-            foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
-            {
-                try
+                foreach (string file in Directory.GetFiles(path, "*", SearchOption.AllDirectories))
                 {
-                    string ext = Path.GetExtension(file);
-                    //Searching for files with the extension we want to be able to play
-                    if (ext == ".mp3" || ext == ".m4a" || ext == ".wav" || ext == ".ogg")
+                    try
                     {
-                        Song song = new Song()
+                        string ext = Path.GetExtension(file);
+                        //Searching for files with the extension we want to be able to play
+                        if (ext == ".mp3" || ext == ".m4a" || ext == ".wav" || ext == ".ogg")
                         {
-                            Name = Path.GetFileName(file),
-                            FilePath = Path.GetFullPath(file),
-                            FileHash = GetHash(Path.GetFullPath(file)),
-                        };
-                        if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() ==0)
+                            Song song = new Song()
+                            {
+                                Name = Path.GetFileName(file),
+                                FilePath = Path.GetFullPath(file),
+                                FileHash = GetHash(Path.GetFullPath(file)),
+                            };
+                            if (_db.Songs.Where(x => x.FileHash.Equals(song.FileHash)).Count() == 0)
                             {
                                 songs.Add(song);
                                 AmountOfNewSongs++;
@@ -226,18 +226,18 @@ namespace LineDanceWF.Services
                                 AmountOfExistingSongs++;
                             }
                         }
+                    }
+                    catch (UnauthorizedAccessException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        continue;
+                    }
+                    catch (System.IO.DirectoryNotFoundException e)
+                    {
+                        MessageBox.Show(e.Message);
+                        continue;
+                    }
                 }
-                catch (UnauthorizedAccessException e)
-                {
-                    MessageBox.Show(e.Message);
-                    continue;
-                }
-                catch (System.IO.DirectoryNotFoundException e)
-                {
-                    MessageBox.Show(e.Message);
-                    continue;
-                }
-            }
                 AddSongs(songs);
                 MessageBox.Show($"{AmountOfNewSongs} new songs added. \n{AmountOfExistingSongs} existing songs found and were skipped.");
 

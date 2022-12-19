@@ -30,7 +30,7 @@ namespace LineDanceWF
         private void Form1_Load(object sender, EventArgs e)
         {
             tempoLabel.Text = $"{tempoBar.Value / 100f}x";
-            
+
             label2.Text = $"{tempoBar.Minimum / 100f}x";
             label3.Text = $"{tempoBar.Maximum / 100f}x";
         }
@@ -127,22 +127,22 @@ namespace LineDanceWF
 
         private void AddDanceBtn_Click(object sender, EventArgs e)
         {
-           AddDanceForm addDanceForm= new AddDanceForm();
+            AddDanceForm addDanceForm = new AddDanceForm();
             addDanceForm.ShowDialog();
         }
 
         private void danceListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            songlist=new List<Song>();
-            Dance dance=new Dance();
+            songlist = new List<Song>();
+            Dance dance = new Dance();
             dance = dancelist[danceListBox.SelectedIndex];
             songlist.Add(dance.OriginalSong);
             songListbox.Items.Clear();
-            foreach(Song song in dance.Alternatives)
+            foreach (Song song in dance.Alternatives)
             {
                 songlist.Add(song);
             }
-            foreach(Song song in songlist)
+            foreach (Song song in songlist)
             {
                 songListbox.Items.Add(song.Name);
             }
